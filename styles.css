@@ -1,0 +1,212 @@
+:root {
+    --theme-color: #e92d28;
+    --card-background: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --card-border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fira Sans', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* HOME PAGE */
+  .home-container {
+    background-image: url(https://images.unsplash.com/photo-1542831371-29b0f74f9713); /* Coding theme */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Quiz Page  */
+  .quiz-container {
+    background-image: url( https://images.unsplash.com/photo-1517694712202-14dd9538aa97); /* Coding theme */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Results Page */
+  .results-container {
+    background-image: url(https://images.unsplash.com/photo-1515879218367-8466d910aaa4); /* Coding theme */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    background: var(--card-background);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+    border: var(--card-border);
+    max-width: 500px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Progress Bar */
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  #progress {
+    height: 100%;
+    width: 0%;
+    background: #28a745; 
+    border-radius: 5px;
+    transition: width 0.5s ease;
+  }
+  
+  #question {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  #options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .option-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .option-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .option-btn.selected {
+    border: 2px solid #ffc107; 
+  }
+  
+  .option-btn.correct {
+    background: #28a745 !important; 
+    color: white;
+  }
+  
+  .option-btn.incorrect {
+    background: #dc3545 !important; 
+    color: white;
+  }
+  
+  /* Next Button */
+  #next-btn {
+    background: #28a745; 
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  #next-btn:hover {
+    background: #218838; 
+    transform: scale(1.05); 
+  }
+  
+  /* Start and Restart Buttons */
+  .start-btn, .restart-btn {
+    background: #ff4757; 
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .start-btn:hover, .restart-btn:hover {
+    background: #ff6b81;
+    transform: scale(1.05); 
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .card {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+    #question {
+      font-size: 1.2rem;
+    }
+  
+    .option-btn {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+  
+    #next-btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  
+    .start-btn, .restart-btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  }

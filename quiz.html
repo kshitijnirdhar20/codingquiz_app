@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App - Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="card">
+      <h1>Quiz Time!</h1>
+      <div class="progress-bar">
+        <div id="progress"></div>
+      </div>
+      <div id="quiz">
+        <div id="question"></div>
+        <div id="options">
+          <button class="option-btn" onclick="checkAnswer(0)"></button>
+          <button class="option-btn" onclick="checkAnswer(1)"></button>
+          <button class="option-btn" onclick="checkAnswer(2)"></button>
+          <button class="option-btn" onclick="checkAnswer(3)"></button>
+        </div>
+      </div>
+      <button id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
