@@ -3,30 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz App - Results</title>
+  <title>Quiz the Code! - Results</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 </head>
 <body>
   <div class="results-container">
-    <div class="card">
-      <h1>Quiz Results</h1>
-      <p id="score"></p>
-      <a href="index.html" class="restart-btn">Restart Quiz</a>
+    <div class="card animate-scale-in">
+      <div class="results-header">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="trophy-icon">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+          <path d="M4 22h16"></path>
+          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+        </svg>
+        <h1>Quiz Results</h1>
+      </div>
+      <div class="score-container">
+        <div class="score-circle">
+          <span id="score-value">0</span>
+          <span id="score-total">/5</span>
+        </div>
+        <p id="score-message">Great effort!</p>
+      </div>
+      <div class="results-actions">
+        <a href="index.html" class="restart-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+          <span>Try Again</span>
+        </a>
+        <button id="share-btn" class="share-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+            <polyline points="16 6 12 2 8 6"></polyline>
+            <line x1="12" y1="2" x2="12" y2="15"></line>
+          </svg>
+          <span>Share Results</span>
+        </button>
+      </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    
-    confetti({
-      particleCount: 100, 
-      spread: 70,
-      origin: { y: 0.6 },
-    });
-
     const score = localStorage.getItem('score');
-    const totalQuestions = 5; 
-    document.getElementById('score').innerText = `You scored ${score} out of ${totalQuestions}!`;
+    const totalQuestions = 5;
+    
+    document.getElementById('score-value').innerText = score;
+    
+    //  message set kiya based on score
+    const scoreMessage = document.getElementById('score-message');
+    if (score == 5) {
+      scoreMessage.innerText = "Perfect! You're a coding master!";
+      // more confetti for jyada score
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+        colors: ['#FFD700', '#FFC0CB', '#00FFFF']
+      });
+    } else if (score >= 3) {
+      scoreMessage.innerText = "Great job! You know your stuff!";
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    } else {
+      scoreMessage.innerText = "Keep practicing! You'll get better!";
+      confetti({
+        particleCount: 50,
+        spread: 50,
+        origin: { y: 0.6 }
+      });
+    }
+    
+    // Share btn ka work
+    document.getElementById('share-btn').addEventListener('click', function() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'My Code Mastery Quiz Results',
+          text: `I scored ${score} out of ${totalQuestions} on the Code Mastery Quiz!`,
+          url: window.location.href
+        })
+        .catch(error => console.log('Error sharing:', error));
+      } else {
+        alert(`Share your score: ${score}/${totalQuestions} on the Code Mastery Quiz!`);
+      }
+    });
   </script>
 </body>
 </html>
